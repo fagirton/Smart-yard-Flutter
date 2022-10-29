@@ -21,32 +21,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Новый дом',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      home: Scaffold(
-        backgroundColor: Colors.white,
-        body: NoticePage(),
-
-          //body: LocationInheritedWidget(
-           // child: WeatherPage(cityname: 'Moscow',))
-
+        title: 'Новый дом',
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+        ),
+        home: Scaffold(
+          backgroundColor: Colors.white,
+          body: NoticePage(),
         )
-      );
+    );
   }
 }
 
-
-
-
-
-
 class WeatherPage extends StatefulWidget {
-  final String cityname;
+
   WeatherPage({
     Key? key,
-    required this.cityname,
   }) : super(key: key);
 
   @override
@@ -54,14 +44,12 @@ class WeatherPage extends StatefulWidget {
 }
 
 
-
-
 class _WeatherPageState extends State<WeatherPage> {
   List<Weather> weatherForecast = [];
   List<ListItem> itemsToBuild = [];
   bool _isLoading = true;
   Placemark? _placemark;
-  
+
   // @override
   // void initState() {
   //   DateTime now = DateTime.now();
@@ -103,36 +91,32 @@ class _WeatherPageState extends State<WeatherPage> {
   // }
 
   @override
-  void didChangeDependencies(){
-    _placemark = LocationInfo.of(context).placemark;
+  void didChangeDependencies() {
+    _placemark = LocationInfo
+        .of(context)
+        .placemark;
     _getWheatherData();
   }
 
   _getWheatherData() async {
-    if (_placemark == null) return ;
-    Map<String, dynamic> _queryParams ={
-      "APPID": Constant.WEATHER_APP_ID,
-      "units": "metric",
-      "lat": _placemark!.lat.toString(),
-      "lon": _placemark!.lon.toString(),
-    };
-
-    var uri = Uri.https(Constant.WEATHER_BASE_URL, Constant.WEATHER_FORECAST_URL, _queryParams);
+    var uri = Uri.https(
+        Constant.BASE_URL, Constant.NOTICES_URL, {'skip': 0, 'limit': 100});
     var response = await http.get(uri);
 
     print(response.toString());
 
     var parsedResponse = jsonDecode(response.body);
 
-    if(parsedResponse["cod"] != "200") return print(parsedResponse["cod"]);
+    if (parsedResponse["cod"] != "200") return print(parsedResponse["cod"]);
 
-    parsedResponse["list"].forEach((period){
+    parsedResponse["list"].forEach((period) {
       var dateTime = DateTime.fromMillisecondsSinceEpoch(period["dt"] * 1000);
       var degree = period["main"]["temp"];
       var clouds = period["clouds"]["all"];
       var icon = period["weather"][0]["icon"];
 
-      weatherForecast.add(Weather(dateTime: dateTime, degree: degree, Clouds: clouds, iconUrl: icon));
+      weatherForecast.add(Weather(
+          dateTime: dateTime, degree: degree, Clouds: clouds, iconUrl: icon));
     });
 
     initWheatherWithData();
@@ -141,27 +125,51 @@ class _WeatherPageState extends State<WeatherPage> {
       _isLoading = false;
     });
   }
-  
-  initWheatherWithData(){
+
+  initWheatherWithData() {
     var now = DateTime.now();
     var itCurrentDay = now;
-    var itNextDay = DateTime(now.year, now.month, now.day +1, 0,0,0,0,0);
+    var itNextDay = DateTime(
+        now.year,
+        now.month,
+        now.day + 1,
+        0,
+        0,
+        0,
+        0,
+        0);
 
     itemsToBuild.add(DayHeading(dateTime: now));
 
-    for(int i=0; i < weatherForecast.length; i++){
-      if(weatherForecast[i].getDateTime() == itNextDay){
+    for (int i = 0; i < weatherForecast.length; i++) {
+      if (weatherForecast[i].getDateTime() == itNextDay) {
         itCurrentDay = itNextDay;
-        itNextDay = DateTime(itNextDay.year, itNextDay.month, itNextDay.day + 1, 0,0,0,0,0);
+        itNextDay = DateTime(
+            itNextDay.year,
+            itNextDay.month,
+            itNextDay.day + 1,
+            0,
+            0,
+            0,
+            0,
+            0);
         itemsToBuild.add(DayHeading(dateTime: itCurrentDay));
         itemsToBuild.add(weatherForecast[i]);
       }
-      else if (weatherForecast[i].getDateTime().isAfter(itNextDay)){
+      else if (weatherForecast[i].getDateTime().isAfter(itNextDay)) {
         itCurrentDay = itNextDay;
-        itNextDay = DateTime(itNextDay.year, itNextDay.month, itNextDay.day +1, 0,0,0,0,0);
+        itNextDay = DateTime(
+            itNextDay.year,
+            itNextDay.month,
+            itNextDay.day + 1,
+            0,
+            0,
+            0,
+            0,
+            0);
         itemsToBuild.add(DayHeading(dateTime: itCurrentDay));
       }
-      else{
+      else {
         itemsToBuild.add(weatherForecast[i]);
       }
     }
@@ -172,7 +180,7 @@ class _WeatherPageState extends State<WeatherPage> {
 
   @override
   Widget build(BuildContext context) {
-    if(_isLoading){
+    if (_isLoading) {
       return Center(child: CircularProgressIndicator(),);
     }
     else {
@@ -180,9 +188,12 @@ class _WeatherPageState extends State<WeatherPage> {
           itemCount: weatherForecast.length,
           itemBuilder: (BuildContext ctx, int index) {
             final item = itemsToBuild[index];
-            if(item is Weather) return WeatherWidget(weather: item);
-            else if (item is DayHeading) return dayHeadingwidget(dayHeading: item);
-            else return Text("Error type");
+            if (item is Weather)
+              return WeatherWidget(weather: item);
+            else if (item is DayHeading)
+              return dayHeadingwidget(dayHeading: item);
+            else
+              return Text("Error type");
             // return WeatherWidget(weather: weatherForecast[index]);
 
 

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:untitled/const.dart';
 
@@ -9,6 +11,10 @@ class NoticePage extends StatefulWidget {
 }
 
 class _LogInPageState extends State<NoticePage> {
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,13 +23,13 @@ class _LogInPageState extends State<NoticePage> {
         ),
         body: GridView.count(
           primary: false,
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(10),
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
-          crossAxisCount: 1,
+          crossAxisCount: 2,
           children: <Widget>[
             Container(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(2),
                 color: Colors.teal[200],
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -38,14 +44,14 @@ class _LogInPageState extends State<NoticePage> {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold))),
                       Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(NoticesTest.NoticeBody),
+                        padding: EdgeInsets.all(5.0),
+                        child: Text(NoticesTest.NoticeBody, maxLines: 3,overflow: TextOverflow.ellipsis,),
                       ),
                     ],
                   ),
                 )),
             Container(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(2),
                 color: Colors.teal[50],
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -60,14 +66,17 @@ class _LogInPageState extends State<NoticePage> {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold))),
                       Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(NoticesTest.NoticeBody),
+                        padding: EdgeInsets.all(5.0),
+                        child: Text(NoticesTest.NoticeBody, maxLines: 3,overflow: TextOverflow.ellipsis,),
                       ),
                     ],
                   ),
                 )),
+
+
+
             Container(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(2),
                 color: Colors.teal[50],
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -82,74 +91,8 @@ class _LogInPageState extends State<NoticePage> {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold))),
                       Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(NoticesTest.NoticeBody),
-                      ),
-                    ],
-                  ),
-                )),
-            Container(
-                padding: const EdgeInsets.all(8),
-                color: Colors.teal[50],
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    children: const [
-                      Card(child: Text(NoticesTest.NoticeAuthor)),
-                      Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(NoticesTest.NoticeTitle,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold))),
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(NoticesTest.NoticeBody),
-                      ),
-                    ],
-                  ),
-                )),
-            Container(
-                padding: const EdgeInsets.all(8),
-                color: Colors.teal[50],
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    children: const [
-                      Card(child: Text(NoticesTest.NoticeAuthor)),
-                      Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(NoticesTest.NoticeTitle,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold))),
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(NoticesTest.NoticeBody),
-                      ),
-                    ],
-                  ),
-                )),
-            Container(
-                padding: const EdgeInsets.all(8),
-                color: Colors.teal[50],
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.max,
-                    children: const [
-                      Card(child: Text(NoticesTest.NoticeAuthor)),
-                      Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(NoticesTest.NoticeTitle,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold))),
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(NoticesTest.NoticeBody),
+                        padding: EdgeInsets.all(5.0),
+                        child: Text(NoticesTest.NoticeBody, maxLines: 3,overflow: TextOverflow.ellipsis,),
                       ),
                     ],
                   ),

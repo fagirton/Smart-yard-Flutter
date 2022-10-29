@@ -1,15 +1,47 @@
+import 'dart:convert';
+
 class Constant{
-  static const WEATHER_BASE_SCHEME = "https://";
-  static const WEATHER_BASE_URL = "api.openweathermap.org";
-  static const WEATHER_IMAGES_PATH = "/img/w/";
-  static const WEATHER_IMAGES_URL = WEATHER_BASE_SCHEME + WEATHER_BASE_URL + WEATHER_IMAGES_PATH;
-  static const WEATHER_FORECAST_URL = "/data/2.5/forecast/";
-  static const WEATHER_APP_ID = "d7a199a3d6c1207d1f7520c3de0a7a43";
+  static const BASE_SCHEME = "http://";
+  static const BASE_URL = "127.0.0.1:8000/";
+  static const FULL_URL = BASE_SCHEME + BASE_URL;
+  static const NOTICES_URL = "/notices/?skip=0&limit=100";
 }
 class NoticesTest{
+  List<String>Notice1 = [
+    "Управляющая компания",
+    "Добро пожаловать!",
+  "Добро пожаловать в Сити 17."
+  "Сами вы его выбрали, или его выбрали за вас — это лучший город из оставшихся. Я такого высокого мнения о Сити 17, что решил разместить свое правительство здесь, в Цитадели, столь заботливо предоставленной нашими Покровителями. Я горжусь тем, что называю Сити 17 своим домом."
+  "Итак, собираетесь ли вы остаться здесь, или же вас ждут неизвестные дали, добро пожаловать в Сити 17. Здесь безопасно."
+  ];
+
   static const NoticeAuthor = "Управляющая компания";
   static const NoticeTitle = "Добро пожаловать!";
   static const NoticeBody = "Добро пожаловать в Сити 17."
       "Сами вы его выбрали, или его выбрали за вас — это лучший город из оставшихся. Я такого высокого мнения о Сити 17, что решил разместить свое правительство здесь, в Цитадели, столь заботливо предоставленной нашими Покровителями. Я горжусь тем, что называю Сити 17 своим домом."
   "Итак, собираетесь ли вы остаться здесь, или же вас ждут неизвестные дали, добро пожаловать в Сити 17. Здесь безопасно.";
+
+  List<String>Notice2 = [
+    "Makise Kurisu",
+    "Привет из JSON",
+    "Я перевёл JSON ответ вот в это, круто да?"
+  ];
+
+  static String response = '''
+{
+"firstname": "Kurisu",
+"surname": "Makise",
+"building": "Hotel",
+"apartment": 14,
+"id": 2,
+"notices": [
+{
+"title": "Привет из JSON",
+"msg_body": "Я перевёл JSON ответ вот в это, круто да?",
+"id": 1,
+"owner_id": 2
+}
+]
+}
+''';
 }
