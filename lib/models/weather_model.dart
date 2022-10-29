@@ -1,23 +1,31 @@
-class Weather extends ListItem{
-  DateTime dateTime;
-  num degree;
-  String iconUrl;
-  int Clouds;
+class User extends ListItem{
+  int id;
+  String firstname;
+  String surname;
+  String building;
+  int apartment;
 
-  Weather({
-    required this.dateTime,
-    required this.degree,
-    required this.Clouds,
-    required this.iconUrl,
+
+  User({
+    required this.id,
+    required this.firstname,
+    required this.surname,
+    required this.building,
+    required this.apartment,
   });
+}
+class NoticeUsable extends ListItem{
+  String ownerName;
+  String title;
+  String body;
+  int id;
 
-  static const String weatherURL = "http://openweathermap.org/img/wn/";
-
-  String getIconURL(){
-    return "$weatherURL$iconUrl.png";
-  }
-
-  DateTime getDateTime(){ return dateTime;}
+  NoticeUsable({
+    required this.ownerName,
+    required this.title,
+    required this.body,
+    required this.id,
+  });
 }
 
 abstract class ListItem{}
@@ -28,30 +36,5 @@ class DayHeading extends ListItem{
   DayHeading({
     required this.dateTime
   });
-
-}
-
-class Placemark {
-  final double lat;
-  final double lon;
-  final String cityName;
-  final int timeStamp = DateTime
-      .now()
-      .millisecondsSinceEpoch;
-
-  Placemark({
-    required this.lat,
-    required this.lon,
-    required this.cityName,
-  });
-
-  Map<String, dynamic> getPlacemark(){
-    return{
-      "lat": this.lat,
-      "lon": this.lon,
-      "cityName": this.cityName,
-      "timeStamp": this.timeStamp,
-    };
-  }
 
 }

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 class Constant{
   static const BASE_SCHEME = "http://";
-  static const BASE_URL = "127.0.0.1:8000/";
+  static const BASE_URL = "127.0.0.1:8000";
   static const FULL_URL = BASE_SCHEME + BASE_URL;
   static const NOTICES_URL = "/notices/?skip=0&limit=100";
 }

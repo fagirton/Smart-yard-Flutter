@@ -27,28 +27,25 @@ class MyApp extends StatelessWidget {
         ),
         home: Scaffold(
           backgroundColor: Colors.white,
-          body: NoticePage(),
+          body: NoticePage_real(),
         )
     );
   }
 }
 
-class WeatherPage extends StatefulWidget {
+class NoticePage_real extends StatefulWidget {
 
-  WeatherPage({
-    Key? key,
-  }) : super(key: key);
 
   @override
-  State<WeatherPage> createState() => _WeatherPageState();
+  State<NoticePage_real> createState() => _NoticePage_real_State();
 }
 
 
-class _WeatherPageState extends State<WeatherPage> {
-  List<Weather> weatherForecast = [];
+class _NoticePage_real_State extends State<NoticePage_real> {
   List<ListItem> itemsToBuild = [];
   bool _isLoading = true;
-  Placemark? _placemark;
+  List<List> NoticeList = [];
+
 
   // @override
   // void initState() {
@@ -92,87 +89,34 @@ class _WeatherPageState extends State<WeatherPage> {
 
   @override
   void didChangeDependencies() {
-    _placemark = LocationInfo
-        .of(context)
-        .placemark;
-    _getWheatherData();
+    _getNoticeData();
   }
 
-  _getWheatherData() async {
-    var uri = Uri.https(
-        Constant.BASE_URL, Constant.NOTICES_URL, {'skip': 0, 'limit': 100});
-    var response = await http.get(uri);
+  _getNoticeData() async {
+    // var uri = Uri.http(Constant.BASE_URL, Constant.NOTICES_URL,
+    //     //{'skip': 0, 'limit': 100}
+    //     );
+    // var response = await http.get(uri);
 
-    print(response.toString());
+    var parsedResponse = jsonDecode(NoticesTest.response);
 
-    var parsedResponse = jsonDecode(response.body);
+    print(parsedResponse);
 
-    if (parsedResponse["cod"] != "200") return print(parsedResponse["cod"]);
+    //if (parsedResponse["cod"] != "200") return print(parsedResponse["cod"]);
 
-    parsedResponse["list"].forEach((period) {
-      var dateTime = DateTime.fromMillisecondsSinceEpoch(period["dt"] * 1000);
-      var degree = period["main"]["temp"];
-      var clouds = period["clouds"]["all"];
-      var icon = period["weather"][0]["icon"];
+    // .forEach((period)
+    //["list"]
+    //parsedResponse({
+    var ownerName = parsedResponse["firstname"] + parsedResponse["surname"];
+    var title = parsedResponse["notice"]["title"];
+    var body = parsedResponse["notice"]["body"];
+    var id = parsedResponse["id"];
 
-      weatherForecast.add(Weather(
-          dateTime: dateTime, degree: degree, Clouds: clouds, iconUrl: icon));
-    });
+    NoticeList.add(NoticeUsable(
+    ownerName: ownerName, title: title, body: body, id: id));
+    //});
 
-    initWheatherWithData();
 
-    setState(() {
-      _isLoading = false;
-    });
-  }
-
-  initWheatherWithData() {
-    var now = DateTime.now();
-    var itCurrentDay = now;
-    var itNextDay = DateTime(
-        now.year,
-        now.month,
-        now.day + 1,
-        0,
-        0,
-        0,
-        0,
-        0);
-
-    itemsToBuild.add(DayHeading(dateTime: now));
-
-    for (int i = 0; i < weatherForecast.length; i++) {
-      if (weatherForecast[i].getDateTime() == itNextDay) {
-        itCurrentDay = itNextDay;
-        itNextDay = DateTime(
-            itNextDay.year,
-            itNextDay.month,
-            itNextDay.day + 1,
-            0,
-            0,
-            0,
-            0,
-            0);
-        itemsToBuild.add(DayHeading(dateTime: itCurrentDay));
-        itemsToBuild.add(weatherForecast[i]);
-      }
-      else if (weatherForecast[i].getDateTime().isAfter(itNextDay)) {
-        itCurrentDay = itNextDay;
-        itNextDay = DateTime(
-            itNextDay.year,
-            itNextDay.month,
-            itNextDay.day + 1,
-            0,
-            0,
-            0,
-            0,
-            0);
-        itemsToBuild.add(DayHeading(dateTime: itCurrentDay));
-      }
-      else {
-        itemsToBuild.add(weatherForecast[i]);
-      }
-    }
     setState(() {
       _isLoading = false;
     });
@@ -184,28 +128,15 @@ class _WeatherPageState extends State<WeatherPage> {
       return Center(child: CircularProgressIndicator(),);
     }
     else {
-      return ListView.builder(
-          itemCount: weatherForecast.length,
-          itemBuilder: (BuildContext ctx, int index) {
-            final item = itemsToBuild[index];
-            if (item is Weather)
-              return WeatherWidget(weather: item);
-            else if (item is DayHeading)
-              return dayHeadingwidget(dayHeading: item);
-            else
-              return Text("Error type");
-            // return WeatherWidget(weather: weatherForecast[index]);
-
-
-            // if(weatherForecast[index] is Weather){
-            //   return WeatherWidget(weather: weatherForecast[index]);
-            // }
-            // else if(weatherForecast[index] is DayHeading){
-            //   return dayHeadingwidget(dayHeading: weatherForecast[index]);
-            // }
-            // else {
-            //   return Text("Неверный тип");
-            // }
+      return GridView.count(
+          primary: false,
+          padding: const EdgeInsets.all(10),
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+          crossAxisCount: 2,
+          children: [ (BuildContext ctx, int index) {
+            final notice = NoticeList[index];
+              return NoticeWidget(notice: notice);
           }
       );
     }
