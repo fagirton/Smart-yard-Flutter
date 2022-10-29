@@ -117,6 +117,116 @@ class _LogInPageState extends State<NoticePage> {
                     ],
                   ),
                 )),
+            Container(
+                padding: const EdgeInsets.all(2),
+                color: Colors.teal[200],
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: const [
+                      Card(child: Text("Реклама")),
+                      Align(
+                          alignment: Alignment.topLeft,
+                          child: Text("Приглашаем в кино со скидкой 50%",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold))),
+                      Padding(
+                        padding: EdgeInsets.all(5.0),
+                        child: Text("Кинотеатр \"Синема\" предлагает скидку 50% на следующие сеансы: ", maxLines: 3,overflow: TextOverflow.ellipsis,),
+                      ),
+                    ],
+                  ),
+                )),
+            Container(
+                padding: const EdgeInsets.all(2),
+                color: Colors.teal[50],
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: const [
+                      Card(child: Text("Итару Хашида")),
+                      Align(
+                          alignment: Alignment.topLeft,
+                          child: Text("Куплю старый компьютер",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold))),
+                      Padding(
+                        padding: EdgeInsets.all(5.0),
+                        child: Text("Куплю компьютер IBM модели 5100, в любом состоянии, уместен торг", maxLines: 3,overflow: TextOverflow.ellipsis,),
+                      ),
+                    ],
+                  ),
+                )),
+            Container(
+                padding: const EdgeInsets.all(2),
+                color: Colors.teal[50],
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: const [
+                      Card(child: Text("Маюри Шиина")),
+                      Align(
+                          alignment: Alignment.topLeft,
+                          child: Text("Пошив костюмов на заказ",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold))),
+                      Padding(
+                        padding: EdgeInsets.all(5.0),
+                        child: Text("Выполняю заказы любой сложности, в стоимость заказа входит материал", maxLines: 3,overflow: TextOverflow.ellipsis,),
+                      ),
+                    ],
+                  ),
+                )),
+            Container(
+                padding: const EdgeInsets.all(2),
+                color: Colors.teal[50],
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: const [
+                      Card(child: Text("Юго Тенноджи")),
+                      Align(
+                          alignment: Alignment.topLeft,
+                          child: Text("Трубки Брауна",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold))),
+                      Padding(
+                        padding: EdgeInsets.all(5.0),
+                        child: Text("В наличии ЭЛТ-телевизоры на любой вкус, возможен ремонт ваших телевизоров", maxLines: 3,overflow: TextOverflow.ellipsis,),
+                      ),
+                    ],
+                  ),
+                )),
+            Container(
+                padding: const EdgeInsets.all(2),
+                color: Colors.teal[200],
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: const [
+                      Card(child: Text("Управляющая компания")),
+                      Align(
+                          alignment: Alignment.topLeft,
+                          child: Text("Сбор денег на ремон крыши",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold))),
+                      Padding(
+                        padding: EdgeInsets.all(5.0),
+                        child: Text("В ближайшее время всем сдать деньги на ремонт крыши", maxLines: 3,overflow: TextOverflow.ellipsis,),
+                      ),
+                    ],
+                  ),
+                )),
           ],
         ));
   }
