@@ -7,6 +7,7 @@ import 'package:untitled/const.dart';
 import 'package:untitled/models/weather_model.dart';
 import 'package:untitled/widgets/LocationInfo.dart';
 import 'package:untitled/widgets/LogInPage.dart';
+import 'package:untitled/widgets/NoticesPage.dart';
 import 'package:untitled/widgets/weatherWidgets.dart';
 
 void main() {
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         backgroundColor: Colors.white,
-        body: LogInPage(),
+        body: NoticePage(),
 
           //body: LocationInheritedWidget(
            // child: WeatherPage(cityname: 'Moscow',))
