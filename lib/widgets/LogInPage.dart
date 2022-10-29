@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/widgets/NoticesPage.dart';
 
 class LogInPage extends StatefulWidget {
   const LogInPage({Key? key}) : super(key: key);
@@ -102,6 +103,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
                   // Validate will return true if the form is valid, or false if
                   // the form is invalid.
                   if (_formKey.currentState!.validate()) {
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
+                      return NoticePage();
+                    }));
                     // Process data.
                   }
                 },

@@ -45,47 +45,39 @@ import '../const.dart';
 // }
 
 
-class NoticeWidget extends StatelessWidget {
-  final NoticeUsable notice;
-
-  const NoticeWidget({
-    Key? key,
-    required this.notice
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        padding: const EdgeInsets.all(2),
-        color: Colors.teal[200],
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: const [
-              Card(child: Text(notice.ownerName)),
-              Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(notice.title,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold))),
-              Padding(
-                padding: EdgeInsets.all(5.0),
-                child: Text(notice.body, maxLines: 3,overflow: TextOverflow.ellipsis,),
-              ),
-            ],
-          ),
-        ));
-  }
-}
-
-
-
-
-
-
-
+// class NoticeWidget extends StatelessWidget {
+//   final NoticeUsable notice;
+//
+//   const NoticeWidget({
+//     Key? key,
+//     required this.notice
+//   }) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//         padding: const EdgeInsets.all(2),
+//         color: Colors.teal[200],
+//         child: Padding(
+//           padding: const EdgeInsets.all(8.0),
+//           child: Column(
+//             crossAxisAlignment: CrossAxisAlignment.center,
+//             mainAxisSize: MainAxisSize.max,
+//             children: const [
+//               Card(child: Text(notice.ownerName)),
+//               Align(
+//                   alignment: Alignment.topLeft,
+//                   child: Text(notice.title,
+//                       style: TextStyle(fontWeight: FontWeight.bold))),
+//               Padding(
+//                 padding: EdgeInsets.all(5.0),
+//                 child: Text(notice.body, maxLines: 3,overflow: TextOverflow.ellipsis,),
+//               ),
+//             ],
+//           ),
+//         ));
+//   }
+// }
 
 class dayHeadingwidget extends StatelessWidget {
   final DayHeading dayHeading;
