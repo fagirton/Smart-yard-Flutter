@@ -1,6 +1,6 @@
-# untitled
+# Smart-yard project
 
-A new Flutter project.
+A Flutter project.
 
 ## Getting Started
 
